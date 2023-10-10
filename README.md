@@ -8,10 +8,10 @@ A command interpreter to manipulate data in the airbnb clone without a visual in
 ![hbnb cli](./assets/815046647d23428a14ca.png)
 
 ### Here we:
-![data](./assets/hbnb.png)
-	- Create a data model
-	- Manage (create, update, destroy, etc) objects via a console / command interpreter
-	- Store and persist objects to a file (JSON file)
+![data](./assets/data.png)
+- Create a data model
+- Manage (create, update, destroy, etc) objects via a console / command interpreter
+- Store and persist objects to a file (JSON file)
 
 
 
