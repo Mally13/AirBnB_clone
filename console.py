@@ -20,8 +20,9 @@ class HbnbConsole(cmd.Cmd):
         """Does nothing in case of an empty input"""
         pass
 
-    """def do_create(self, arg):
-        print("I have created", arg)"""
+    def do_create(self, arg):
+        """Creates an object"""
+        print("I have created", arg)
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
