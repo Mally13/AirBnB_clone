@@ -20,8 +20,8 @@ class HbnbConsole(cmd.Cmd):
         """Does nothing in case of an empty input"""
         pass
 
-    def do_create(self, arg):
-        print("I have created", arg)
+    """def do_create(self, arg):
+        print("I have created", arg)"""
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -30,7 +30,7 @@ class HbnbConsole(cmd.Cmd):
     def do_EOF(self, arg):
         """Handles EOF signal to exit the program"""
         print("")
-        return False
+        return True
 
 if __name__  == "__main__":
     try:
