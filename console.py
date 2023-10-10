@@ -21,6 +21,7 @@ class HbnbConsole(cmd.Cmd):
         pass
 
     def do_create(self, arg):
+        """Creates an object"""
         print("I have created", arg)
 
     def do_quit(self, arg):
@@ -30,7 +31,7 @@ class HbnbConsole(cmd.Cmd):
     def do_EOF(self, arg):
         """Handles EOF signal to exit the program"""
         print("")
-        return False
+        return True
 
 if __name__  == "__main__":
     try:
