@@ -16,7 +16,7 @@ class HbnbConsole(cmd.Cmd):
         print("*** Unknown syntax: {}".format(arg))
         return False
 
-    def emptyarg(self):
+    def emptyline(self):
         """Does nothing in case of an empty input"""
         pass
 
