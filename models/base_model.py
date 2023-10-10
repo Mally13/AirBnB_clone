@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Define BaseModel class"""
+"""Defines BaseModel class"""
 import uuid
 import datetime
 
@@ -41,12 +41,10 @@ class BaseModel():
         iso_created_at = self.created_at.isoformat()
         iso_updated_at = self.updated_at.isoformat()
 
-        obj_dict = {
-                "__class__": class_name,
-                "id": self.id,
-                "created_at": iso_created_at,
-                "updated_at": iso_updated_at,
-                }
+        obj_dict = self.__dict__.copy()
+        obj_dict["created_at"] = iso_created_at
+        obj_dict["updated_at"] = iso_updated_at
+        obj_dict["__class__"] = class_name
         return obj_dict
 
     def __str__(self):
