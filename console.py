@@ -9,27 +9,31 @@ class HbnbConsole(cmd.Cmd):
     """
     prompt = "(hbnb) "
 
-    def default(self, line):
+    def default(self, arg):
         """
         Called for unknown commands
         """
-        if not line.strip():
-            pass
-        else:
-            print("*** Unknown syntax: {}".format(line))
+        print("*** Unknown syntax: {}".format(arg))
+        return False
 
-    def emptyline(self):
+    def emptyarg(self):
         """Does nothing in case of an empty input"""
         pass
 
-    def do_create(self, line):
-        print("I have created", line)
+    def do_create(self, arg):
+        print("I have created", arg)
 
-    def do_quit(self, line):
+    def do_quit(self, arg):
+        """Quit command to exit the program"""
         return True
+    
+    def do_EOF(self, arg):
+        """Handles EOF signal to exit the program"""
+        print("")
+        return False
 
 if __name__  == "__main__":
     try:
-        HbnbConsole().cmdloop()  
+        HbnbConsole().cmdloop()
     except KeyboardInterrupt:
-        print("\n Exiting...")
+        print("\n Exiting HBnB...")
