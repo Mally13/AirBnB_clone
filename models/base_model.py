@@ -2,6 +2,7 @@
 """Defines BaseModel class"""
 import uuid
 import datetime
+import storage
 
 class BaseModel():
     """
@@ -19,11 +20,13 @@ class BaseModel():
             keys/values of __dict__ of the instance
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Instatiates class"""
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
         self.updated_at = self.created_at
+        if 
+        storage.new(self)
 
     def save(self):
         """
@@ -31,6 +34,7 @@ class BaseModel():
         with the current datetime
         """
         self.updated_at = datetime.datetime.now()
+        storage.save(self)
 
     def to_dict(self):
         """
