@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-
 """Defines BaseModel class"""
 import uuid
 import datetime
 import models
 
 
-class BaseModel():
+class BaseModel:
     """
     A base class that defines all common attributes/methods
     for other child classes.
