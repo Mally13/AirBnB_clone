@@ -3,6 +3,7 @@
 import cmd
 import sys
 
+
 class HbnbConsole(cmd.Cmd):
     """
     Defines the HBnB command intepreter
@@ -27,13 +28,14 @@ class HbnbConsole(cmd.Cmd):
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
-    
+
     def do_EOF(self, arg):
         """Handles EOF signal to exit the program"""
         print("")
         return True
 
-if __name__  == "__main__":
+
+if __name__ == "__main__":
     try:
         HbnbConsole().cmdloop()
     except KeyboardInterrupt:

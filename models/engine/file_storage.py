@@ -2,7 +2,7 @@
 """Defines class FileStorage"""
 import json
 
-class FileStorage():
+class FileStorage:
     """
     Class FileStorage that serializes instances to a JSON
     file and deserializes JSON file to instances
@@ -27,31 +27,28 @@ class FileStorage():
 
     def all(self):
         """Returns the dictonary objects"""
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
-        data = {}
-        for key, obj in self.__objects.items():
-            data[key] = obj.to_dict()
-
-        with open(self.__file_path, 'w') as file:
-            json.dumb(data, file)
+        datadict = FileStorage.__objects
+        objdict = {obj: datadict[obj].to_dict() for obj in datadict.keys()}
+        with open(FileStorage.__file_path, 'w') as file:
+            json.dump(objdict, file)
 
     def reload(self):
         """Deserializes JSON file to __objects"""
         try:
-            with open(self.__file_path, 'r') as file:
-                data = json.load(file)
-                for key, value in data.items():
-                    class_name, obj_id = key.split(".")
-                    cls = eval(class_name)
-                    obj = cls(**value)
-                    self.__objects[key] = obj
+            with open(FileStorage.__file_path) as file:
+                objdict = json.load(file)
+                for obj in objdict.values():
+                    cls_name = obj["__class__"]
+                    del obj["__class__"]
+                    self.new(eval(cls_name)(**obj))
         except FileNotFoundError:
-            pass
+            return
