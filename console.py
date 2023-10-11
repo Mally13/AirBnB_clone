@@ -25,6 +25,10 @@ class HbnbConsole(cmd.Cmd):
         """Creates an object"""
         print("I have created", arg)
 
+    def do_show(self, arg):
+        """shows the objects"""
+        return False
+
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
