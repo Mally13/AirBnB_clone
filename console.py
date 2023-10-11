@@ -3,25 +3,38 @@
 import cmd
 import sys
 
-class MyConsole(cmd.Cmd):
-    intro = "(hbnb)\n\nDocumented commands (type help <topic>):\n========================================\nEOF  help  quit\n"
+class HbnbConsole(cmd.Cmd):
+    """
+    Defines the HBnB command intepreter
+    """
+    prompt = "(hbnb) "
 
-    def do_EOF(self, arg):
-        print("Exiting the console.")
-        return True
+    def default(self, arg):
+        """
+        Called for unknown commands
+        """
+        print("*** Unknown syntax: {}".format(arg))
+        return False
 
-    def do_help(self, arg):
-        if arg:
-            print(f"Help for {arg} goes here.")
-        else:
-            print("Available commands: EOF  help  quit")
-
-    def do_quit(self, arg):
-        #print("Exiting the console.")
-        return True
-
-    def emptyline(arg):
+    def emptyline(self):
+        """Does nothing in case of an empty input"""
         pass
 
-if __name__  == "__main__":\
-    MyConsole().cmdloop()
+    def do_create(self, arg):
+        """Creates an object"""
+        print("I have created", arg)
+
+    def do_quit(self, arg):
+        """Quit command to exit the program"""
+        return True
+    
+    def do_EOF(self, arg):
+        """Handles EOF signal to exit the program"""
+        print("")
+        return True
+
+if __name__  == "__main__":
+    try:
+        HbnbConsole().cmdloop()
+    except KeyboardInterrupt:
+        print("\n Exiting HBnB...")
