@@ -3,8 +3,8 @@
 from models.base_model import BaseModel
 
 
-class Amenity(BaseModel):
-    """ a class Amenity that inherits from BaseModel"""
+class Place(BaseModel):
+    """ a class Place that inherits from BaseModel"""
 
     @method
     def __init__(self):
@@ -24,5 +24,5 @@ class Amenity(BaseModel):
         self.amenity_ids = ""
 
     def __str__(self):
-        # Custom __str__ method to print Amenity object information
-        return "[Amenity ({}) {}".format(self.id, self.__dict__)
+        # Custom __str__ method to print Place object information
+        return "[Place ({}) {}".format(self.id, self.__dict__)
