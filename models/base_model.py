@@ -13,7 +13,8 @@ class BaseModel:
     Attributes:
         id: (string) unique id for an instance created
         created_at: (datetime) current time when an instance is created
-        updated_at: (datetime) current time when an instance is created or updated
+        updated_at: (datetime) current time when an instance is
+        created or updated
     Methods:
         save(self): updates the public instance attribute
             updated_at with current datetiime
@@ -34,7 +35,8 @@ class BaseModel:
                     setattr(self, key, value)
 
             if 'created_at' in kwargs:
-                self.created_at = datetime.datetime.strptime(kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+                self.created_at = datetime.datetime.strptime(kwargs['created_at'],
+                                                             '%Y-%m-%dT%H:%M:%S.%f')
             if 'updated_at' in kwargs:
                 self.updated_at = datetime.datetime.strptime(kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
         else:

@@ -5,24 +5,19 @@ from models.base_model import BaseModel
 
 class Place(BaseModel):
     """ a class Place that inherits from BaseModel"""
+    city_id = ""
+    user_id = ""
+    name = ""
+    description = ""
+    number_rooms = ""
+    number_bathrooms = ""
+    max_guest = ""
+    price_by_night = ""
+    latitude = ""
+    longitude = ""
+    amenity_ids = ""
 
-    @method
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-        """public class attributes"""
-        self.city_id = ""
-        self.user_id = ""
-        self.name = ""
-        self.description = ""
-        self.number_rooms = ""
-        self.number_bathrooms = ""
-        self.max_guest = ""
-        self.price_by_night = ""
-        self.latitude = ""
-        self.longitude = ""
-        self.amenity_ids = ""
 
-    def __str__(self):
-        # Custom __str__ method to print Place object information
-        return "[Place ({}) {}".format(self.id, self.__dict__)

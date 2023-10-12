@@ -1,10 +1,16 @@
 #!/usr/bin/python3
 
 import cmd
-import sys
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.user import User
+from models.review import Review
+from models.state import State
 
 
-class HbnbConsole(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """
     Defines the HBnB command intepreter
     """
@@ -22,8 +28,28 @@ class HbnbConsole(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates an object"""
-        print("I have created", arg)
+        """
+        Creates a new instance of BaseModel,
+        saves it (to the JSON file) and prints the id
+        """
+        valid_classes = {
+            'BaseModel': BaseModel,
+            'City': City,
+            'State': State,
+            'Review': Review,
+            'Place': Place,
+            'User': User,
+            'Amenity': Amenity
+        }
+        args = arg.split()
+        if (len(args) < 1):
+             print("** class name missing **")
+        elif (args[0] in valid_classes):
+             new = valid_classes[args[0]]()
+             new.save()
+             print("{}".format(new.id))
+        else:
+             print("** class doesn't exist **")         
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -36,7 +62,4 @@ class HbnbConsole(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    try:
-        HbnbConsole().cmdloop()
-    except KeyboardInterrupt:
-        print("\n Exiting HBnB...")
+        HBNBCommand().cmdloop()
