@@ -96,8 +96,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif (args[0] not in valid_classes):
             print("** class doesn't exist **")
-        elif (len(args) < 2):
-            print("** instance id missing **")
+
         else:
             obj_key = args[0] + "." + args[1]
             if obj_key in all_objects:
@@ -154,19 +153,19 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif (len(args) < 2):
             print("** instance id missing **")
+        elif (len(args) < 3):
+            print("** attribute name missing **")
+        elif (len(args) < 4):
+            print("** value missing ** ")
         else:
             obj_key = args[0] + "." + args[1]
             if obj_key in all_objects:
+                instance = all_objects[obj_key]
                 instance_attr = args[2]
-                if instance_attr in all_objects[obj_key]:
-                    all_objects[obj_key][instance_attr] = args[3]
-                    storage.__objects = all_objects
-                elif hasattr(args[0], instance_attr):
-                    all_objects[obj_key][instance_attr] = args[3]
-                    storage.__objects = all_objects
-                else:
-                    print("**attribute name does not exist**")
-
+                instance_val = args[3]
+                if hasattr(instance, instance_attr):
+                    setattr(instance, instance_attr, instance_val)
+                    instance.save()
             else:
                  print("** no instance found **")
                    
@@ -178,7 +177,6 @@ class HBNBCommand(cmd.Cmd):
         """Handles EOF signal to exit the program"""
         print("")
         return True
-
 
 if __name__ == "__main__":
         HBNBCommand().cmdloop()
