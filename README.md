@@ -10,16 +10,12 @@ A command interpreter to manipulate data in the airbnb clone without a visual in
 
 ### Usage
 1. How to start it
-'''
     ->./console.py
-'''
 
 2. How to use it
 
 * create: Create an instance.
-'''
     ->(hbnb) create User
-'''
 
 * all: Display all instances of a class.
     ->(hbnb) all BaseModel
