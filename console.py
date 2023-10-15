@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
         elif (len(args) < 3):
             print("** attribute name missing **")
         elif (len(args) < 4):
-            print("** value missing ** ")
+            print("** value missing **")
         else:
             obj_key = args[0] + "." + args[1]
             if obj_key in all_objects:
