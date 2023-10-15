@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""Defines the class HBNBCommand"""
 import cmd
 from models.base_model import BaseModel
 from models.city import City
