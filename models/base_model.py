@@ -34,7 +34,6 @@ class BaseModel:
         self.updated_at = self.created_at
 
         if len(kwargs) != 0:
-            """ """
             for key, value in kwargs.items():
                 if key != '__class__':
                     setattr(self, key, value)
@@ -72,5 +71,6 @@ class BaseModel:
         return obj_dict
 
     def __str__(self):
+        """grenetates a strng represatation of the BaseModel class"""
         class_name = self.__class__.__name__
         return f"[{class_name}] ({self.id}) {self.__dict__}"
