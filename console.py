@@ -141,8 +141,12 @@ class HBNBCommand(cmd.Cmd):
                 cant_update = ["id", "created_at", "updated_at"]
                 if instance_attr not in cant_update and hasattr(
                     instance, instance_attr):
-                    setattr(instance, instance_attr, instance_val)
-                    instance.save()
+                    attr_type = type(getattr(instance, instance_attr))
+                    try:
+                        setattr(instance, instance_attr, attr_type(instance_val))
+                        instance.save()
+                    except ValueError:
+                        return
             else:
                 print("** no instance found **")
 
