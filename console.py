@@ -12,6 +12,17 @@ from models.state import State
 from models import storage
 
 
+valid_classes = {
+    'BaseModel': BaseModel,
+    'City': City,
+    'State': State,
+    'Review': Review,
+    'Place': Place,
+    'User': User,
+    'Amenity': Amenity
+}
+
+
 class HBNBCommand(cmd.Cmd):
     """
     Defines the HBnB command intepreter
@@ -34,15 +45,6 @@ class HBNBCommand(cmd.Cmd):
         Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id
         """
-        valid_classes = {
-            'BaseModel': BaseModel,
-            'City': City,
-            'State': State,
-            'Review': Review,
-            'Place': Place,
-            'User': User,
-            'Amenity': Amenity
-        }
         args = shlex.split(arg)
         if (len(args) < 1):
             print("** class name missing **")
@@ -56,15 +58,6 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Prints the string representation of an instance
         based on the class name and id."""
-        valid_classes = {
-            'BaseModel': BaseModel,
-            'City': City,
-            'State': State,
-            'Review': Review,
-            'Place': Place,
-            'User': User,
-            'Amenity': Amenity
-        }
         all_objects = storage.all()
         args = shlex.split(arg)
         if (len(args) < 1):
@@ -83,15 +76,6 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id
         (save the change into the JSON file)"""
-        valid_classes = {
-            'BaseModel': BaseModel,
-            'City': City,
-            'State': State,
-            'Review': Review,
-            'Place': Place,
-            'User': User,
-            'Amenity': Amenity
-        }
         all_objects = storage.all()
         args = shlex.split(arg)
         if (len(args) < 1):
@@ -109,15 +93,6 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all string representation of"""
         """all instances based or not on the class name."""
-        valid_classes = {
-            'BaseModel': BaseModel,
-            'City': City,
-            'State': State,
-            'Review': Review,
-            'Place': Place,
-            'User': User,
-            'Amenity': Amenity
-        }
         all_objects = storage.all()
         args = shlex.split(arg)
         output_list = []
@@ -141,15 +116,6 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or
         updating attribute"""
-        valid_classes = {
-            'BaseModel': BaseModel,
-            'City': City,
-            'State': State,
-            'Review': Review,
-            'Place': Place,
-            'User': User,
-            'Amenity': Amenity
-        }
         all_objects = storage.all()
         args = shlex.split(arg)
         if (len(args) < 1):
@@ -168,7 +134,9 @@ class HBNBCommand(cmd.Cmd):
                 instance = all_objects[obj_key]
                 instance_attr = args[2]
                 instance_val = args[3]
-                if hasattr(instance, instance_attr):
+                cant_update = ["id", "created_at", "updated_at"]
+                if instance_attr not in cant_update and hasattr(
+                    instance, instance_attr):
                     setattr(instance, instance_attr, instance_val)
                     instance.save()
             else:
