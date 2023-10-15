@@ -96,7 +96,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif (args[0] not in valid_classes):
             print("** class doesn't exist **")
-
         else:
             obj_key = args[0] + "." + args[1]
             if obj_key in all_objects:
