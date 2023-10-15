@@ -10,6 +10,7 @@ from models.review import Review
 from models.state import State
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """
     Defines the HBnB command intepreter
@@ -76,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
             if obj_key in all_objects:
                 print("{}".format(all_objects[obj_key]))
             else:
-                 print("** no instance found **")
+                print("** no instance found **")
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id
@@ -102,11 +103,11 @@ class HBNBCommand(cmd.Cmd):
                 all_objects.pop(obj_key)
                 storage.__objects = all_objects
             else:
-                 print("** no instance found **")
+                print("** no instance found **")
 
-                   
     def do_all(self, arg):
-        """Prints all string representation of all instances based or not on the class name."""         
+        """Prints all string representation of"""
+        """all instances based or not on the class name."""
         valid_classes = {
             'BaseModel': BaseModel,
             'City': City,
@@ -120,10 +121,10 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         output_list = []
         if (len(args) < 1):
-             for key, value in all_objects.items():
-                  output_list.append(str(value))
+            for key, value in all_objects.items():
+                output_list.append(str(value))
         elif (args[0] not in valid_classes):
-             print("** class doesn't exist **")
+            print("** class doesn't exist **")
         else:
             class_name = args[0]
             filtered_objects = {key: value for key, value in all_objects.items() if class_name in key}
@@ -166,8 +167,8 @@ class HBNBCommand(cmd.Cmd):
                     setattr(instance, instance_attr, instance_val)
                     instance.save()
             else:
-                 print("** no instance found **")
-                   
+                print("** no instance found **")
+
     def do_quit(self, arg):
         """Quit command to exit athe program"""
         return True
@@ -177,5 +178,6 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
+
 if __name__ == "__main__":
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
