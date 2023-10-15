@@ -35,5 +35,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn('BaseModel', model_str)
         self.assertIn(str(model.id), model_str)
 
+
 if __name__ == '__main__':
     unittest.main()
