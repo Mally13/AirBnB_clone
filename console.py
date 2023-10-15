@@ -82,6 +82,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif (args[0] not in valid_classes):
             print("** class doesn't exist **")
+        elif (len(args) < 2):
+            print("** instance id missing **")
         else:
             obj_key = args[0] + "." + args[1]
             if obj_key in all_objects:
@@ -91,8 +93,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """Prints all string representation of"""
-        """all instances based or not on the class name."""
+        """
+        Prints all string representation of
+        all instances based or not on the class name.
+        """
         all_objects = storage.all()
         args = shlex.split(arg)
         output_list = []
