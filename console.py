@@ -174,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_quit(self, arg):
-        """Quit command to exit athe program"""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, arg):

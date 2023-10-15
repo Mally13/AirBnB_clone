@@ -22,7 +22,12 @@ class BaseModel:
             keys/values of __dict__ of the instance
     """
     def __init__(self, *args, **kwargs):
-        """instantiates the class"""
+        """
+        Instantiates the class
+        Args:
+        *args: any though unused
+        **kwargs: dict containing key value pairs of attributes
+        """
 
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
