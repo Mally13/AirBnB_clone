@@ -6,6 +6,7 @@ from io import StringIO
 from models import storage
 from console import HBNBCommand
 
+
 class TestHBNBCommand(unittest.TestCase):
     """class to test the HBNB Command"""
     def setUp(self):
@@ -53,6 +54,7 @@ class TestHBNBCommand(unittest.TestCase):
             self.console.onecmd("")
             output = mock_stdout.getvalue()
             self.assertEqual(output, "")
+
 
 if __name__ == '__main__':
     unittest.main()

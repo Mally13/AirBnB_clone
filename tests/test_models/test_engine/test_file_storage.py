@@ -11,6 +11,7 @@ from models.review import Review
 from models.state import State
 from models import storage
 
+
 class TestFileStorage(unittest.TestCase):
     """Unittests for testing methods of the FileStorage class."""
     def test_all(self):
@@ -31,11 +32,12 @@ class TestFileStorage(unittest.TestCase):
         key = f"{model.__class__.__name__}.{model.id}"
         storage.new(model)
         storage.save()
-        
+
         os.remove(storage._FileStorage__file_path)
 
         storage.reload()
         self.assertIsNotNone(storage.all().get(key))
+
 
 if __name__ == '__main__':
     unittest.main()

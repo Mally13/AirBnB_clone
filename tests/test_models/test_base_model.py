@@ -6,6 +6,7 @@ import datetime
 
 
 class TestBaseModel(unittest.TestCase):
+    """Defines unittests for models/base_model.py."""
     def test_init(self):
         """Test the __init__ method of BaseModel"""
         model = BaseModel()
@@ -34,6 +35,7 @@ class TestBaseModel(unittest.TestCase):
         model_str = str(model)
         self.assertIn('BaseModel', model_str)
         self.assertIn(str(model.id), model_str)
+
 
 if __name__ == '__main__':
     unittest.main()
