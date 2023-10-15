@@ -127,7 +127,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             class_name = args[0]
-            filtered_objects = {key: value for key, value in all_objects.items() if class_name in key}
+            filtered_objects = {key:
+                                value for key,
+                                value in all_objects.items()
+                                if class_name in key
+                                }
             for key, value in filtered_objects.items():
                 output_list.append(str(value))
         if len(output_list) != 0:
