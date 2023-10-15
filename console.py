@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines the class HBNBCommand"""
 import cmd
+import shlex
 from models.base_model import BaseModel
 from models.city import City
 from models.place import Place
@@ -42,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
             'User': User,
             'Amenity': Amenity
         }
-        args = arg.split()
+        args = shlex.split(arg)
         if (len(args) < 1):
             print("** class name missing **")
         elif (args[0] in valid_classes):
@@ -65,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
             'Amenity': Amenity
         }
         all_objects = storage.all()
-        args = arg.split()
+        args = shlex.split(arg)
         if (len(args) < 1):
             print("** class name missing **")
         elif (args[0] not in valid_classes):
@@ -92,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
             'Amenity': Amenity
         }
         all_objects = storage.all()
-        args = arg.split()
+        args = shlex.split(arg)
         if (len(args) < 1):
             print("** class name missing **")
         elif (args[0] not in valid_classes):
@@ -118,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
             'Amenity': Amenity
         }
         all_objects = storage.all()
-        args = arg.split()
+        args = shlex.split(arg)
         output_list = []
         if (len(args) < 1):
             for key, value in all_objects.items():
@@ -150,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
             'Amenity': Amenity
         }
         all_objects = storage.all()
-        args = arg.split()
+        args = shlex.split(arg)
         if (len(args) < 1):
             print("** class name missing **")
         elif (args[0] not in valid_classes):
