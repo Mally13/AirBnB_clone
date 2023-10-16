@@ -201,8 +201,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    hbnb_command = HBNBCommand()
-    if not sys.stdin.isatty():
-        commands = sys.stdin.readlines()
-        hbnb_command.process_commands(commands)
     HBNBCommand().cmdloop()
