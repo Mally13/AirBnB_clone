@@ -2,6 +2,7 @@
 """Defines the class HBNBCommand"""
 import cmd
 import shlex
+import sys
 from models.base_model import BaseModel
 from models.city import City
 from models.place import Place
@@ -200,4 +201,8 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
+    hbnb_command = HBNBCommand()
+    if not sys.stdin.isatty():
+        commands = sys.stdin.readlines()
+        hbnb_command.process_commands(commands)
     HBNBCommand().cmdloop()
