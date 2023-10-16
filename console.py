@@ -38,6 +38,9 @@ class HBNBCommand(cmd.Cmd):
             if class_name in valid_classes and command == 'all()':
                 self.do_all(class_name)
                 return
+            elif class_name in valid_classes and command == 'count()':
+                self.count(class_name)
+                return
         print("*** Unknown syntax: {}".format(arg))
         return False
 
@@ -155,13 +158,33 @@ class HBNBCommand(cmd.Cmd):
                         return
             else:
                 print("** no instance found **")
+    
+    def count(self, arg):
+        """
+        Retrieves the number of instances of a class
+        """
+        class_list = []
+        all_objects = storage.all()
+        class_name = arg
+        filtered_objects = {key:
+                            value for key,
+                            value in all_objects.items()
+                            if class_name in key
+                            }
+        for key, value in filtered_objects.items():
+            class_list.append(str(value))
+        print(len(class_list))
 
     def do_quit(self, arg):
-        """Quit command to exit the program"""
+        """
+        Quit command to exit the program
+        """
         return True
 
     def do_EOF(self, arg):
-        """Handles EOF signal to exit the program"""
+        """
+        Handles EOF signal to exit the program
+        """
         print("")
         return True
 
