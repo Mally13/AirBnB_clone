@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
                         return
             else:
                 print("** no instance found **")
-    
+
     def count(self, arg):
         """
         Retrieves the number of instances of a class
