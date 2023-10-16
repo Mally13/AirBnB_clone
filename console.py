@@ -41,6 +41,12 @@ class HBNBCommand(cmd.Cmd):
             elif class_name in valid_classes and command == 'count()':
                 self.count(class_name)
                 return
+            elif (class_name in valid_classes and
+                  command.startswith('show(') and
+                  command.endswith(')')):
+                instance_id = command[5:-1]
+                self.do_show(class_name + ' ' + instance_id)
+                return
         print("*** Unknown syntax: {}".format(arg))
         return False
 
