@@ -17,7 +17,8 @@ class FileStorage:
 
     Attributes:
         __file_path (str): Path to the JSON file (e.g., "file.json")
-        __objects (dict): A dictionary that stores all objects by <class name>.id
+        __objects (dict): A dictionary that stores all objects by
+                        <class name>.id
                          (e.g., to store a BaseModel object with id=12121212,
                          the key will be BaseModel.12121212)
 
