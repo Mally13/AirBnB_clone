@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             elif (command.startswith('destroy(') and
                   command.endswith(')')):
-                instance_id = command[7:-1]
+                instance_id = command[8:-1]
                 self.do_destroy(class_name + ' ' + instance_id)
                 return
         print("*** Unknown syntax: {}".format(arg))
