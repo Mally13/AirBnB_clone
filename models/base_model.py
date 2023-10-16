@@ -35,15 +35,11 @@ class BaseModel:
 
         if len(kwargs) != 0:
             for key, value in kwargs.items():
-                if key != '__class__':
-                    setattr(self, key, value)
-
-            if 'created_at' in kwargs:
-                self.created_at = datetime.datetime.strptime(
-                    kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-            if 'updated_at' in kwargs:
-                self.updated_at = datetime.datetime.strptime(
-                    kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+                if key == 'created_at' or key == "updated_at":
+                    self.__dict__[key] = datetime.datetime.strptime(
+                        value, '%Y-%m-%dT%H:%M:%S.%f')
+                else:
+                    self.__dict__[key] = value
         else:
             models.storage.new(self)
 
@@ -57,7 +53,7 @@ class BaseModel:
 
     def to_dict(self):
         """
-        returns a dictionary containing all keys/values
+        Returns a dictionary containing all keys/values
         of __dict__ of the instance
         """
         class_name = self.__class__.__name__
@@ -71,6 +67,6 @@ class BaseModel:
         return obj_dict
 
     def __str__(self):
-        """grenetates a strng represatation of the BaseModel class"""
+        """generates a strng representation of the BaseModel class"""
         class_name = self.__class__.__name__
         return f"[{class_name}] ({self.id}) {self.__dict__}"

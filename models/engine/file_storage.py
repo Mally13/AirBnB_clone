@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """Defines class FileStorage"""
-
 import json
-
 from models.base_model import BaseModel
 from models.city import City
 from models.place import Place
@@ -34,7 +32,7 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """Returns the dictonary objects"""
+        """Returns the dictonary __objects"""
         return FileStorage.__objects
 
     def new(self, obj):
