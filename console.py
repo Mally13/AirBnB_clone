@@ -33,6 +33,11 @@ class HBNBCommand(cmd.Cmd):
         """
         Called for unknown commands
         """
+        if '.' in arg:
+            class_name, command = arg.split('.')
+            if class_name in valid_classes and command == 'all()':
+                self.do_all(class_name)
+                return
         print("*** Unknown syntax: {}".format(arg))
         return False
 
