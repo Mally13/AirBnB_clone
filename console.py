@@ -35,17 +35,21 @@ class HBNBCommand(cmd.Cmd):
         """
         if '.' in arg:
             class_name, command = arg.split('.')
-            if class_name in valid_classes and command == 'all()':
+            if command == 'all()':
                 self.do_all(class_name)
                 return
             elif class_name in valid_classes and command == 'count()':
                 self.count(class_name)
                 return
-            elif (class_name in valid_classes and
-                  command.startswith('show(') and
+            elif (command.startswith('show(') and
                   command.endswith(')')):
                 instance_id = command[5:-1]
                 self.do_show(class_name + ' ' + instance_id)
+                return
+            elif (command.startswith('destroy(') and
+                  command.endswith(')')):
+                instance_id = command[7:-1]
+                self.do_destroy(class_name + ' ' + instance_id)
                 return
         print("*** Unknown syntax: {}".format(arg))
         return False
