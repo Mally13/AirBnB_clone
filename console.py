@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Defines the class HBNBCommand"""
+
+"""Import statements from the modules"""
 import cmd
 import shlex
 import sys
@@ -12,6 +13,8 @@ from models.review import Review
 from models.state import State
 from models import storage
 
+"""a dictionary that maps class names (strings)
+to their corresponding class objects"""
 
 valid_classes = {
     'BaseModel': BaseModel,
@@ -26,7 +29,7 @@ valid_classes = {
 
 class HBNBCommand(cmd.Cmd):
     """
-    Defines the HBnB command intepreter
+    main class that defines the HBnB command intepreter
     """
     prompt = "(hbnb) "
 
