@@ -31,3 +31,6 @@ A command interpreter to manipulate data in the airbnb clone without a visual in
 
 * quit: Exit the program.
     ->(hbnb) quit
+
+* count: Retrieve the number of instances of a class.
+	->(hbnb) count
