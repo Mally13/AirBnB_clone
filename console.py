@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, arg):
         """
-        Called for unknown commands
+        Called for unknown commands eg. do_all
         """
         if '.' in arg:
             class_name, command = arg.split('.')
@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def emptyline(self):
-        """Does nothing in case of an empty input"""
+        """This method does nothing in case of an empty input"""
         pass
 
     def do_create(self, arg):
@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or
-        updating attribute"""
+        updating attribute and also saves the updated instance to JSON file"""
         all_objects = storage.all()
         args = shlex.split(arg)
         if (len(args) < 1):
