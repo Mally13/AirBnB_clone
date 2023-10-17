@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-"""Defines the class HBNBCommand"""
+
+"""Import statements from the modules"""
 import cmd
 import shlex
+import sys
 from models.base_model import BaseModel
 from models.city import City
 from models.place import Place
@@ -11,6 +13,8 @@ from models.review import Review
 from models.state import State
 from models import storage
 
+"""a dictionary that maps class names (strings)
+to their corresponding class objects"""
 
 valid_classes = {
     'BaseModel': BaseModel,
@@ -25,13 +29,13 @@ valid_classes = {
 
 class HBNBCommand(cmd.Cmd):
     """
-    Defines the HBnB command intepreter
+    main class that defines the HBnB command intepreter
     """
     prompt = "(hbnb) "
 
     def default(self, arg):
         """
-        Called for unknown commands
+        Called for unknown commands eg. do_all
         """
         if '.' in arg:
             class_name, command = arg.split('.')
@@ -60,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def emptyline(self):
-        """Does nothing in case of an empty input"""
+        """This method does nothing in case of an empty input"""
         pass
 
     def do_create(self, arg):
@@ -142,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or
-        updating attribute"""
+        updating attribute and also saves the updated instance to JSON file"""
         all_objects = storage.all()
         args = shlex.split(arg)
         if (len(args) < 1):
@@ -173,7 +177,7 @@ class HBNBCommand(cmd.Cmd):
                         return
             else:
                 print("** no instance found **")
-    
+
     def count(self, arg):
         """
         Retrieves the number of instances of a class
