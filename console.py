@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
             elif (command.startswith('update(') and
                   command.endswith(')')):
                 instance_id = command[7:-1]
-                self.do_destroy(class_name + ' ' + instance_id)
+                self.do_update(class_name + ' ' + instance_id)
                 return
         print("*** Unknown syntax: {}".format(arg))
         return False
