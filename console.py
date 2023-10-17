@@ -57,8 +57,12 @@ class HBNBCommand(cmd.Cmd):
                 return
             elif (command.startswith('update(') and
                   command.endswith(')')):
-                instance_id = command[7:-1]
-                self.do_update(class_name + ' ' + instance_id)
+                args = command[7:-1].split(',')
+                instance_id = args[0].strip()
+                attr_name = args[1].strip()
+                attr_value = args[2].strip()
+                var = (f"{class_name} {instance_id} {attr_name} {attr_value}")
+                self.do_update(var)
                 return
         print("*** Unknown syntax: {}".format(arg))
         return False
