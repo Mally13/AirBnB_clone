@@ -11,53 +11,46 @@ class BaseModel:
     for other child classes.
 
     Attributes:
-        id: (string) unique id for an instance created
-        created_at: (datetime) current time when an instance is created
-        updated_at: (datetime) current time when an instance is
+        id (str): Unique id for an instance created
+        created_at (datetime): Current time when an instance is created
+        updated_at (datetime): Current time when an instance is
         created or updated
     Methods:
-        save(self): updates the public instance attribute
-            updated_at with current datetiime
-        to_dict(self): returns a dictionary containing all
+        save(self): Updates the public instance attribute
+            updated_at with the current datetime and saves to storage
+        to_dict(self): Returns a dictionary containing all
             keys/values of __dict__ of the instance
     """
+
     def __init__(self, *args, **kwargs):
         """
         Instantiates the class
-        Args:
-        *args: any though unused
-        **kwargs: dict containing key value pairs of attributes
         """
-
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
+        self.created_at = self.updated_at = datetime.datetime.now()
         self.updated_at = self.created_at
 
         if len(kwargs) != 0:
             for key, value in kwargs.items():
-                if key != '__class__':
-                    setattr(self, key, value)
-
-            if 'created_at' in kwargs:
-                self.created_at = datetime.datetime.strptime(
-                    kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-            if 'updated_at' in kwargs:
-                self.updated_at = datetime.datetime.strptime(
-                    kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+                if key == 'created_at' or key == "updated_at":
+                    self.__dict__[key] = datetime.datetime.strptime(
+                        value, '%Y-%m-%dT%H:%M:%S.%f')
+                else:
+                    self.__dict__[key] = value
         else:
             models.storage.new(self)
 
     def save(self):
         """
-        updates the public instance attribute updated_at
-        with the current datetime
+        Updates the public instance attribute updated_at
+        with the current datetime and saves to storage
         """
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """
-        returns a dictionary containing all keys/values
+        Returns a dictionary containing all keys/values
         of __dict__ of the instance
         """
         class_name = self.__class__.__name__
@@ -71,6 +64,6 @@ class BaseModel:
         return obj_dict
 
     def __str__(self):
-        """grenetates a strng represatation of the BaseModel class"""
+        """Generates a string representation of the BaseModel class"""
         class_name = self.__class__.__name__
-        return f"[{class_name}] ({self.id}) {self.__dict__}"
+        return f"[{class_name}] ({self.id}) {self.to_dict()}"
