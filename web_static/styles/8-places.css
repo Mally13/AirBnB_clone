@@ -1,20 +1,28 @@
+.places {
+    display: flex;
+    flex-wrap: wrap;
+}
 .places h1 {
+    width: 100%;
     font-size: 30px;
     text-align: left;
 }
+
 .places article {
-    flex-wrap: wrap;
     display: inline-flex;
-    justify-self: center;
-    align-self: center;
+    max-width: 390px;
     width: 390px;
     padding: 20px;
     margin: 20px;
     border:1px solid #FF5A5F;
     border-radius: 4px;
     flex-direction: column;
+    justify-self: center;
 }
 
+.places article:last-child {
+    margin: auto;
+}
 article h2 {
     font-size: 30px;
     text-align: center;
