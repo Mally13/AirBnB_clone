@@ -182,6 +182,11 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+<<<<<<< HEAD
+    def do_show(self, arg):
+        """shows the objects"""
+        return False
+=======
     def count(self, arg):
         """
         Retrieves the number of instances of a class
@@ -197,6 +202,7 @@ class HBNBCommand(cmd.Cmd):
         for key, value in filtered_objects.items():
             class_list.append(str(value))
         print(len(class_list))
+>>>>>>> main
 
     def do_quit(self, arg):
         """
